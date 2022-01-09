@@ -9,7 +9,7 @@ namespace TestProject1
         [TestCase(7, 87)]
         public void 測試數列後三位數總和(int input,int expected)
         {
-            int actual = Calculate(input);
+            int actual = ArithmeticSequence.Calculate(input);
             Assert.AreEqual(expected, actual);
         }
         [TestCase(1, 1, 2, 1)]
@@ -20,8 +20,11 @@ namespace TestProject1
             int actual = ArithmeticSequence.取得數列第N位數字(first, n, diff);
             Assert.AreEqual(expected, actual);
         }
+    }
 
-        public int Calculate(int input)
+    public class ArithmeticSequence
+    {
+        public static int Calculate(int input)
         {
             if (input % 2 == 0)
                 throw new Exception("輸入錯誤，請重新輸入");
@@ -43,11 +46,6 @@ namespace TestProject1
 
             return result;
         }
-
-    }
-
-    public class ArithmeticSequence
-    {
         public static int 計算數列總共有幾個(int input)
         {
             int sumNumber = 0;

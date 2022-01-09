@@ -5,13 +5,6 @@ namespace TestProject1
 {
     public class ArithmeticSequenceTest
     {
-        [TestCase(3,15)]
-        [TestCase(7, 87)]
-        public void 代刚计计羆㎝(int input,int expected)
-        {
-            int actual = ArithmeticSequence.Calculate(input);
-            Assert.AreEqual(expected, actual);
-        }
         [TestCase(1, 1, 2, 1)]
         [TestCase(1, 5, 2, 9)]
         [TestCase(10, 100, 10, 1000)]
@@ -20,13 +13,57 @@ namespace TestProject1
             int actual = ArithmeticSequence.眔计材N计(first, n, diff);
             Assert.AreEqual(expected, actual);
         }
+        [TestCase(1, 1)]
+        [TestCase(3,15)]
+        [TestCase(7, 87)]
+        public void 代刚计计羆㎝(int input,int expected)
+        {
+            int actual = ArithmeticSequence.Calculate(input);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(1, 1)]
+        [TestCase(3, 15)]
+        [TestCase(7, 87)]
+        public void 代刚计计羆㎝Calc(int input, int expected)
+        {
+            int actual = ArithmeticSequence.Calc(input);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(2)]
+        [TestCase(4)]
+        [TestCase(-1)]
+        [TestCase(-3)]
+        public void 代刚案计の璽计(int input)
+        {
+            var ex = Assert.Throws<Exception>(() => ArithmeticSequence.Calc(input));
+            Assert.That(() => ex != null && ex.Message.Contains("块岿粇"));
+        }
     }
 
     public class ArithmeticSequence
     {
+        public static int Calc(int number)
+        {
+            // number ゲ惠琌案计
+            if (number < 0 || number % 2 == 0)
+                throw new Exception("块岿粇叫穝块");
+
+            if (number == 1)
+                return 1;
+         
+            // 仓縩瞷ぶ计?
+            int h = (number + 1) / 2; //辫そΑ蔼
+            int count = (1 + number) * h / 2; 
+            // 仓縩瞷ぶ计
+            // 沮计计,眔程计琌ぶ
+            int lastNumber = count * 2 - 1;
+            // 程计羆㎝琌
+            int result = (lastNumber - 2) * 3;
+            return result;
+        }
         public static int Calculate(int input)
         {
-            if (input % 2 == 0)
+            if (input < 0 || input % 2 == 0)
                 throw new Exception("块岿粇叫穝块");
 
             if (input == 1)
